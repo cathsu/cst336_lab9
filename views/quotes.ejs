@@ -1,0 +1,54 @@
+<%- include ('templates/header'); -%>
+
+<div class='container'>
+    <div class='jumbotron'>
+        <h1 style='text-align:center;'> FOUND QUOTES </h1>
+        <div class='row'>
+            <div class='col-sm-4'></div>
+            <button class='col-sm-4 btn btn-info btn-block'onclick='location.href="/";'>Search Again</button>
+            <div class='col-sm-4'></div>
+        </div>
+    </div>
+    
+    <%if(!quotes){%>
+            <h1 class='col-sm-12 notfound'>CANNOT FIND YOUR AUTHOR !!!</h1>
+    <%}
+    else {%>
+        <h3>Quotes</h3>
+        <ul>
+            <%quotes.forEach(function(q){%>
+                <li>
+                    <a href="/quotes" id ="<%=q.authorId%>" data-toggle="modal" data-target="#exampleModal"><%=q.firstName + " " + q.lastName%></a>
+                    : <%=q.quote%>
+                </li>
+            <%});%>
+        </ul>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="authorTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div id="bio" class="modal-body">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+    <%}%>
+    
+    <%if (clickedAuthor) {%>
+     
+    <%}%>
+</div>
+
+<%- include ('templates/footer'); -%>
