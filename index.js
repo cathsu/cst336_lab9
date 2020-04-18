@@ -8,57 +8,57 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 /* Configure MySQL DBMS */
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'cathsu',
-    password: 'cathsu',
-    database: 'quotes_db', 
-    multipleStatements: true
-});
+// const connection = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'cathsu',
+//     password: 'cathsu',
+//     database: 'quotes_db', 
+//     multipleStatements: true
+// });
 
-connection.connect();
+// connection.connect();
 
 /* The handler for the DEFAULT route */
 app.get('/', function(req, res){
     var stmtCategory = 'select distinct category from l9_quotes';
     var stmtAuthor = 'select distinct firstName, lastName from l9_author';
     
-    var queries = stmtCategory + ';' + stmtAuthor
-    connection.query(queries, function(error, found) {
-        var categories = null; 
-        var authors = null; 
-        if (error) throw error; 
-        if (found.length) {
-            categories = found[0]; 
-            authors = found[1]; 
-        }
-        res.render('home', {categories: categories, authors: authors});
-    }); 
+    // var queries = stmtCategory + ';' + stmtAuthor
+    // connection.query(queries, function(error, found) {
+    //     var categories = null; 
+    //     var authors = null; 
+    //     if (error) throw error; 
+    //     if (found.length) {
+    //         categories = found[0]; 
+    //         authors = found[1]; 
+    //     }
+    //     res.render('home', {categories: categories, authors: authors});
+    // }); 
     
     
 });
 
-app.get('/quotes', function(req, res) {
-    var stmt = getSQLStatement(req);
-    connection.query(stmt, function(error, found){
-	    if(error) throw error;
-	    res.render('quotes', {quotes: found, clickedAuthor: null});
-	});
-    // console.log(stmt);
+// app.get('/quotes', function(req, res) {
+//     var stmt = getSQLStatement(req);
+//     connection.query(stmt, function(error, found){
+// 	    if(error) throw error;
+// 	    res.render('quotes', {quotes: found, clickedAuthor: null});
+// 	});
+//     // console.log(stmt);
     
-});
+// });
 
 
-app.get("/author/:id", function(req, res) {
-    var stmt = "select * from l9_author where authorId=" + req.params.id + ";";
-    connection.query(stmt, function(error, found){
-	    if(error) throw error;
-	    res.send(found);
-	});
+// app.get("/author/:id", function(req, res) {
+//     var stmt = "select * from l9_author where authorId=" + req.params.id + ";";
+//     connection.query(stmt, function(error, found){
+// 	    if(error) throw error;
+// 	    res.send(found);
+// 	});
     
 
     
-});
+// });
 
 /* The handler for undefined routes */
 app.get('*', function(req, res){
