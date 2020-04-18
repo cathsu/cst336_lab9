@@ -66,10 +66,9 @@ app.get('*', function(req, res){
 });
 
 /* Start the application server */
-app.listen(process.env.PORT || 3000, function(){
-    console.log('Server has been started');
-})
-
+app.listen(process.env.PORT, process.env.IP, function(){
+    console.log("Express server is running..."); 
+}); 
 
 function getSQLStatement(req) {
     var stmt = "select * from l9_author, l9_quotes where "; 
