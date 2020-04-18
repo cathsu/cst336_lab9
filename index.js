@@ -9,7 +9,7 @@ app.set('view engine', 'ejs');
 
 /* Configure MySQL DBMS */
 const connection = mysql.createConnection({
-    host: 'ac13p04qck3oipad@un0jueuv2mam78uv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+    host: 'un0jueuv2mam78uv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
     user: 'o81c78k2qfme9lwj',
     password: 'ac13p04qck3oipad',
     database: 'pu3efiquen3026ei', 
@@ -69,8 +69,6 @@ app.get('*', function(req, res){
 app.listen(process.env.PORT || 3000, function(){
     console.log('Server has been started');
 })
-
-
 
 
 function getSQLStatement(req) {
