@@ -1,6 +1,4 @@
 $("a").on("click", function() {
-  
-    console.log("inside a");
     var id = $(this).attr("id");
     $.ajax({
         method: "GET",

@@ -50,7 +50,6 @@ app.get('/quotes', function(req, res) {
 
 
 app.get("/author/:id", function(req, res) {
-    console.log(req.params.id);
     var stmt = "select * from l9_author where authorId=" + req.params.id + ";";
     connection.query(stmt, function(error, found){
 	    if(error) throw error;
